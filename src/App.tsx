@@ -6,6 +6,7 @@ import Login from "./pages/Login";
 function App() {
   const [session, setSession] = useState<Session | null>(null);
   const [loading, setLoading] = useState(true);
+  const [role, setRole] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchSession = async () => {
@@ -32,6 +33,27 @@ function App() {
     return () => subscription.unsubscribe();
   },[])
 
+  useEffect(() => {
+    if(!session) {
+      setRole(null);
+      return;
+    }
+    const checkRole = async () => {
+      try {
+        const { data, error } = await supabase.from("v2_profiles").select("role").eq("id", session.user.id).single();
+        if (error) {
+          throw new Error("Kan ikke finne rollen til denne brukeren.")
+        }
+        setRole(data.role);
+      } catch (error) {
+        console.error("Error fetching user role:", error);
+      }
+      
+    } 
+
+    checkRole();
+  }, [session]);
+
   const handleLogout = async () => {
     await supabase.auth.signOut();
   }
@@ -44,8 +66,10 @@ function App() {
          <Login/>
       ) : (
         <>
-        <p>Velkommen, {session.user.email}</p>
+        <p className="font-semibold">Velkommen, {session.user.email}</p>
+        <p>Rolle: {role ?? "Ukjent"}</p>
         <button onClick={handleLogout}>Logg ut</button>
+        
       </>
       )}
     </div>
