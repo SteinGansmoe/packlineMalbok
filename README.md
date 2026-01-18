@@ -44,3 +44,45 @@ Build the model filter options from the returned car list (unique model+year com
 
 Filter in-memory for fast UI
 
+## Routes
+We use React Router here. 
+
+- ```/login```
+- ```/```
+- ```/make/:make```
+- ```/admin```
+
+For dedicated car view: 
+
+ - ```/make/:make/car/:carId```
+
+## Component Structure
+```App.tsx```
+ - Session gate + role fetch (Completed)
+ - If not logged in routes only show ```/login```
+ - If logged in render router
+
+ ```pages/MakePickerPage.tsx```
+  - Fetch "available makes" (derived from DB)
+  - Search filter (client-side)
+  - Grid of make tiles
+  - Clicking tile navigates to ```/make/Tesla``` etc.
+
+  ```pages/MakeFitmentsPage.tsx```
+   - Reads ```make``` from useParams()
+   - Fetch fitments for that make (joined)
+   - Build model filter options from returned data
+   - Render fitment cards grid
+
+   ```components/MakeTile.tsx```
+   - Logo + name + accessibility
+   
+   ```components/FitmentCard.tsx```
+   - Displays fitment info consistently
+
+
+   ## Data approach (important)
+    - For MakePicketPage: query fitments joined with cars and derive unique makes
+        - Can create a view for this later. 
+
+    

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Routes, Route } from 'react-router-dom'; 
 import { supabase } from "./lib/supabaseClient";
 import type { Session } from "@supabase/supabase-js";
 import Login from "./pages/Login"; 
@@ -60,20 +61,25 @@ function App() {
 
   if (loading) return <div>Laster...</div>;
 
+  if(!session) {
+    return <Login />;
+  }
+
   return (
-    <div>
-      {!session ? (
-         <Login/>
-      ) : (
-        <>
-        <p className="font-semibold">Velkommen, {session.user.email}</p>
-        <p>Rolle: {role ?? "Ukjent"}</p>
-        <button onClick={handleLogout}>Logg ut</button>
-        
-      </>
-      )}
-    </div>
+    <Routes>
+      <Route path="/" element={<div>Home</div>} />
+      <Route path="/make/:make" element={<div>Make Page</div>} />
+      <Route path="/login" element={<Login />} />
+    </Routes>
   )
 }
 
 export default App
+
+
+// <>
+//        <p className="font-semibold">Velkommen, {session.user.email}</p>
+//        <p>Rolle: {role ?? "Ukjent"}</p>
+//        <button onClick={handleLogout}>Logg ut</button>
+//      </>
+      
