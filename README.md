@@ -86,3 +86,8 @@ For dedicated car view:
         - Can create a view for this later. 
 
     
+
+    Fortsett med CreateFitmentPage i morgen: 
+
+     - Finn god user flow først og fremst. 
+     

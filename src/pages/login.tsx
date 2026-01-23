@@ -26,9 +26,10 @@ const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 
 
     return (
-        <div>
+        <div className="flex m-20">
             <form onSubmit={handleSubmit}>
-                <input 
+                <input
+                className="border p-1 mr-1 bg-slate-100" 
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
