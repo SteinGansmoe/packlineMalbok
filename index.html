@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script type="module" src="/js/index.mjs"></script>
     <script src="/js/checkLogin.mjs" type="module"></script>
+    <script src="/js/navMenu.mjs" type="module"></script>
     <link rel="stylesheet" href="/dist/styles.css" />
     <link rel="icon" typoe="image/x-icon" href="/images/favicon.png" />
     <script src="https://cdn.tailwindcss.com"></script>
@@ -16,42 +17,54 @@
   </head>
   <body>
     <header>
-      <nav class="bg-white shadow-xl mb-6">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="flex justify-between h-16">
-            <div class="flex items-center space-x-6">
-              <a href="index.html" class="inline-block" aria-label="Hjem">
-                <img
-                  src="/images/packline.png"
-                  alt="Logo"
-                  class="h-10 w-auto"
-                />
-              </a>
-              <a
-                href="user/dashboard.html"
-                class="text-gray-700 hover:text-blue-600 hidden"
-                id="dashboard-link"
-                >Ny mal</a
-              >
-            </div>
-            <div class="flex items-center">
-              <a
-  href="auth/login.html"
-  class="loginlink group inline-flex items-center justify-center w-10 h-10 rounded-full bg-gray-200 hover:bg-black"
-  aria-label="Login"
->
-  <i class="fa-regular fa-user text-gray-700 text-lg group-hover:text-[#cdfa64]"></i>
-</a>
-              <a
-                href="auth/login.html"
-                class="text-gray-700 hover:text-blue-600"
-                id="login-link"
-                >Logg inn</a
-              >
-            </div>
-          </div>
+     <nav class="bg-white shadow-xl mb-6">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between h-16">
+      <div class="flex items-center space-x-6">
+        <a href="index.html" class="inline-block" aria-label="Hjem">
+          <img
+            src="/images/packline.png"
+            alt="Logo"
+            class="h-10 w-auto"
+          />
+        </a>
+      </div>
+
+      <div class="flex items-center relative">
+        <button
+          id="menu-button"
+          type="button"
+          class="group inline-flex items-center justify-center w-10 h-10 rounded-full bg-gray-200 hover:bg-black transition"
+          aria-label="Åpne meny"
+          aria-expanded="false"
+        >
+          <i class="fa-regular fa-user text-gray-700 text-lg group-hover:text-[#cdfa64]"></i>
+        </button>
+
+        <div
+          id="dropdown-menu"
+          class="hidden absolute right-0 top-12 w-44 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50"
+        >
+          <a
+            href="user/dashboard.html"
+            id="dashboard-link"
+            class="hidden block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+          >
+            Ny mal
+          </a>
+
+          <a
+            href="auth/login.html"
+            id="login-link"
+            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+          >
+            Logg inn
+          </a>
         </div>
-      </nav>
+      </div>
+    </div>
+  </div>
+</nav>
     </header>
     <div class="max-w-xl mx-auto p-4">
       <h1 class="text-2xl font-bold mb-4">Finn Takboks Mal:</h1>
