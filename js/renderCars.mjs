@@ -25,6 +25,10 @@ Front: ${car.front || "N/A"}
 Bak: ${car.bak || "N/A"}
 Mal nummer: ${car.id}`.trim();
 
+const updatedDate = car.updated_at
+  ? new Date(car.updated_at).toLocaleDateString("nb-NO")
+  : null;
+
 
 // <p class="text-sm text-gray-700">Takfeste: ${car.takfeste || "N/A"}</p>
     item.innerHTML = `
@@ -42,6 +46,17 @@ Mal nummer: ${car.id}`.trim();
         <p class="text-sm text-gray-700">Mal nummer: ${car.id}</p>
       </a>
 
+      ${
+    car.note
+      ? `
+        <div class="mt-3 border border-yellow-500 border-l-4 bg-yellow-50 rounded p-3">
+          <p class="text-sm font-semibold text-yellow-800">⚠ Viktig informasjon</p>
+          <p class="text-sm text-gray-800 mt-1">${car.note}</p>
+        </div>
+      `
+      : ""
+  }
+
       <div class="mt-2">
         <label class="text-sm flex items-center gap-2 py-2">
           <input type="checkbox" class="paint-toggle accent-green-600">
@@ -58,6 +73,14 @@ Mal nummer: ${car.id}`.trim();
       <button class="copy-btn absolute bg-gray-600 hover:bg-gray-700 rounded py-2 px-4 text-white top-2 right-2 text-sm" 
         data-info="${infoText.replaceAll('"', "&quot;")}">Kopier</button>
 
+       ${
+  updatedDate
+    ? `<p class="mt-3 text-xs text-gray-500">Sist oppdatert: ${updatedDate}</p>`
+    : ""
+}
+
+
+
       ${
         session
           ? `<div class="mt-4 flex gap-4">
@@ -67,6 +90,11 @@ Mal nummer: ${car.id}`.trim();
           : ""
       }
     `;
+    
+
+  
+
+    
 
     container.appendChild(item);
 

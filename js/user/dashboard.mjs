@@ -28,6 +28,8 @@ form.addEventListener("submit", async (e) => {
   const cb = document.getElementById("cb").value.trim();
   const front = document.getElementById("front").value.trim();
   const bak = document.getElementById("bak").value.trim();
+  const note = document.getElementById("note").value.trim();
+  
 
 
   const userId = session.user.id;
@@ -44,6 +46,7 @@ form.addEventListener("submit", async (e) => {
       front,
       bak,
       takstativ,
+      note,
       updated_by: userId,
     },
   ]);
@@ -52,7 +55,7 @@ form.addEventListener("submit", async (e) => {
     message.textContent = "❌ Error: " + error.message;
     message.className = "text-red-500 mt-4";
   } else {
-    message.textContent = "✅ Car measurement added successfully!";
+    message.textContent = "✅ Mal lagt til!";
     message.className = "text-green-600 mt-4";
     form.reset();
     
