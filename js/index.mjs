@@ -62,7 +62,7 @@ modelSelect.addEventListener("change", async () => {
 
   const { data, error } = await supabase
     .from("cars")
-    .select("id, make, model, year, note, updated_at roofbox, takfeste, takstativ, cc, cb, front, bak")
+    .select("id, make, model, year, note, updated_at, roofbox, takfeste, takstativ, cc, cb, front, bak")
     .eq("make", make)
     .eq("model", model);
 
