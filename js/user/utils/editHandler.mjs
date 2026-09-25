@@ -17,12 +17,18 @@ export function setupEditButtons() {
         return;
       }
 
+      document.getElementById("edit-make").value = data.make;
+      document.getElementById("edit-model").value = data.model;
+      document.getElementById("edit-year").value = data.year;
       document.getElementById("edit-id").value = data.id;
       document.getElementById("edit-roofboxes").value = data.roofbox;
       document.getElementById("edit-cc").value = data.cc || "";
       document.getElementById("edit-cb").value = data.cb || "";
       document.getElementById("edit-front").value = data.front || "";
       document.getElementById("edit-bak").value = data.bak || "";
+      document.getElementById("edit-takstativ").value = data.takstativ || "";
+      document.getElementById("edit-height_with_box").value = data.height_with_box || "";
+      document.getElementById("edit-note").value = data.note || "";
 
       document.getElementById("edit-modal").classList.remove("hidden");
     });
@@ -66,6 +72,8 @@ export function setupEditFormHandlers() {
       cb: document.getElementById("edit-cb").value,
       front: document.getElementById("edit-front").value,
       bak: document.getElementById("edit-bak").value,
+      height_with_box: parseInt(document.getElementById("edit-height_with_box").value, 10),
+      note: document.getElementById("edit-note").value,
     };
 
     const { error } = await supabase.from("cars").update(updates).eq("id", id);
