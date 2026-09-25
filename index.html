@@ -105,6 +105,33 @@
         <h2 class="text-lg font-semibold mb-4">Rediger målinger</h2>
         <form id="edit-form" class="space-y-4">
           <input type="hidden" id="edit-id" />
+
+<label class="block text-sm">
+  Merke:
+  <input
+    type="text"
+    id="edit-make"
+    class="w-full p-2 border rounded"
+  />
+</label>
+
+<label class="block text-sm">
+  Modell:
+  <input
+    type="text"
+    id="edit-model"
+    class="w-full p-2 border rounded"
+  />
+</label>
+
+<label class="block text-sm">
+  Årsmodell:
+  <input
+    type="number"
+    id="edit-year"
+    class="w-full p-2 border rounded"
+  />
+</label>
           <select
           id="edit-roofboxes"
           name="roofboxes"
@@ -129,8 +156,8 @@
           <option value="Thule">Thule</option>
           <option value="Orginal">Orginal</option>
           <option value="Annen type">Annen type</option>
-        </label>
       </select>
+      </label>
           <label class="block text-sm">
             CC:
             <input type="text" id="edit-cc" class="w-full p-2 border rounded" />
@@ -158,6 +185,25 @@
               class="w-full p-2 border rounded"
             />
           </label>
+
+          <label class="block text-sm">
+  Høyde med boks:
+  <input
+    type="number"
+    id="edit-height_with_box"
+    placeholder="203"
+    class="w-full p-2 border rounded"
+  />
+</label>
+
+<label class="block text-sm">
+  Viktig informasjon:
+  <textarea
+    id="edit-note"
+    placeholder="Viktig informasjon om modellen..."
+    class="w-full p-2 border rounded"
+  ></textarea>
+</label>
 
           <div class="flex justify-end gap-4 pt-2">
             <button
