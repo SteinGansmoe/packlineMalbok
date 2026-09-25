@@ -29,6 +29,7 @@ form.addEventListener("submit", async (e) => {
   const front = document.getElementById("front").value.trim();
   const bak = document.getElementById("bak").value.trim();
   const note = document.getElementById("note").value.trim();
+  const heightWithBox = parseInt(document.getElementById("height_with_box").value, 10);
   
 
 
@@ -47,6 +48,7 @@ form.addEventListener("submit", async (e) => {
       bak,
       takstativ,
       note,
+      height_with_box: heightWithBox,
       updated_by: userId,
     },
   ]);

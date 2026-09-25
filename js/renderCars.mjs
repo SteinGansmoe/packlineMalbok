@@ -45,6 +45,9 @@ const updatedDate = car.updated_at
         <p class="text-sm text-gray-700">Bak: ${car.bak || "N/A"}</p>
         <p class="text-sm text-gray-700">Mal nummer: ${car.id}</p>
       </a>
+       <p class="text-sm text-gray-700">
+        Høyde med boks: ${car.height_with_box ? `${car.height_with_box} cm` : "N/A"}
+      </p>
 
       ${
     car.note
