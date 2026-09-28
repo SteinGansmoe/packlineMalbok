@@ -4,6 +4,7 @@ export default {
     "./auth/**/*.html",
     "./user/**/*.html",
     "./packlineMalbok/**/*.html",
+    "./js/**/*.js",
     "./js/**/*.mjs",
   ],
   theme: {
