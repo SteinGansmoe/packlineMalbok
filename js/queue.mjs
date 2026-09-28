@@ -6,6 +6,11 @@ const emptyQueue = document.getElementById("empty-queue");
 const queuedCount = document.getElementById("queued-count");
 const inProgressCount = document.getElementById("in-progress-count");
 const adminControls = document.getElementById("admin-queue-controls");
+const toggleCompleted = document.getElementById("toggle-completed");
+const completedSection = document.getElementById("completed-section");
+const completedList = document.getElementById("completed-list");
+const completedEmpty = document.getElementById("completed-empty");
+const completedChevron = document.getElementById("completed-chevron");
 
 const {
   data: { session },
@@ -236,5 +241,71 @@ queueList.addEventListener("click", async (e) => {
 
   loadQueue();
 });
+
+async function loadCompletedOrders() {
+  const { data, error } = await supabase
+    .from("box_queue")
+    .select("*")
+    .eq("status", "completed")
+    .order("completed_at", { ascending: false })
+    .limit(10);
+
+  if (error) {
+    console.error("Kunne ikke hente ferdige ordre:", error);
+    return;
+  }
+
+  renderCompletedOrders(data);
+}
+
+function renderCompletedOrders(data) {
+  completedList.innerHTML = "";
+
+  if (!data.length) {
+    completedEmpty.classList.remove("hidden");
+    return;
+  }
+
+  completedEmpty.classList.add("hidden");
+
+  data.forEach((order) => {
+    const row = document.createElement("tr");
+
+    const completedDate = order.completed_at
+      ? new Date(order.completed_at).toLocaleDateString("nb-NO")
+      : "-";
+
+    row.innerHTML = `
+      <td class="px-6 py-4 font-semibold text-gray-900">
+        ${order.order_number}
+      </td>
+
+      <td class="px-6 py-4 text-gray-700">
+        ${order.car_model}
+      </td>
+
+      <td class="px-6 py-4 text-sm text-gray-500">
+        ${completedDate}
+      </td>
+    `;
+
+    completedList.appendChild(row);
+  });
+}
+
+let completedLoaded = false;
+
+toggleCompleted?.addEventListener("click", async () => {
+  const isHidden = completedSection.classList.contains("hidden");
+
+  completedSection.classList.toggle("hidden");
+  completedChevron?.classList.toggle("rotate-180", isHidden);
+
+  if (isHidden && !completedLoaded) {
+    await loadCompletedOrders();
+    completedLoaded = true;
+  }
+});
+
 
 loadQueue();
