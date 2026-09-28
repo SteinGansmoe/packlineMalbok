@@ -106,61 +106,69 @@
 
       <!-- Admin: legg til ordre -->
       <section
-        id="admin-queue-controls"
-        class="hidden mb-8 rounded-xl border border-gray-200 bg-white p-6 shadow-sm"
-      >
-        <div class="mb-5">
-          <h2 class="text-lg font-semibold text-gray-900">
-            Legg til ordre
-          </h2>
+  id="admin-queue-controls"
+  class="hidden mb-6 rounded-xl border border-gray-200 bg-white p-5 shadow-sm"
+>
+  <div class="mb-4 flex items-center justify-between">
+    <div>
+      <h2 class="text-lg font-semibold text-gray-900">
+        Legg til ordre
+      </h2>
 
-          <p class="mt-1 text-sm text-gray-500">
-            Nye ordre legges automatisk til med status
-            <span class="font-medium text-gray-700">I kø</span>.
-          </p>
-        </div>
+      <p class="mt-1 text-sm text-gray-500">
+        Nye ordre legges automatisk til med status
+        <span class="font-medium text-gray-700">I kø</span>.
+      </p>
+    </div>
 
-        <form
-          id="queue-form"
-          class="grid grid-cols-1 gap-4 md:grid-cols-[1fr_2fr_auto] md:items-end"
-        >
-          <label class="block">
-            <span class="mb-1 block text-sm font-medium text-gray-700">
-              Ordrenummer
-            </span>
+    <div
+      class="hidden h-10 w-10 items-center justify-center rounded-lg bg-gray-100 text-gray-500 sm:flex"
+    >
+      <i class="fa-solid fa-plus"></i>
+    </div>
+  </div>
 
-            <input
-              type="text"
-              id="order-number"
-              required
-              placeholder="F.eks. SO42123"
-              class="w-full rounded-lg border border-gray-300 bg-white px-3 py-2.5 text-sm outline-none transition focus:border-gray-500 focus:ring-2 focus:ring-gray-200"
-            />
-          </label>
+  <form
+    id="queue-form"
+    class="grid grid-cols-1 gap-4 md:grid-cols-[220px_minmax(0,1fr)_auto] md:items-end"
+  >
+    <label class="block">
+      <span class="mb-1 block text-sm font-medium text-gray-700">
+        Ordrenummer
+      </span>
 
-          <label class="block">
-            <span class="mb-1 block text-sm font-medium text-gray-700">
-              Bilmodell
-            </span>
+      <input
+        type="text"
+        id="order-number"
+        required
+        placeholder="F.eks. SO42123"
+        class="w-full rounded-lg border border-gray-300 bg-gray-50 px-3 py-2.5 text-sm text-gray-900 outline-none transition placeholder:text-gray-400 focus:border-gray-500 focus:bg-white focus:ring-2 focus:ring-gray-200"
+      />
+    </label>
 
-            <input
-              type="text"
-              id="car-model"
-              required
-              placeholder="F.eks. Skoda Kodiaq 2021"
-              class="w-full rounded-lg border border-gray-300 bg-white px-3 py-2.5 text-sm outline-none transition focus:border-gray-500 focus:ring-2 focus:ring-gray-200"
-            />
-          </label>
+    <label class="block">
+      <span class="mb-1 block text-sm font-medium text-gray-700">
+        Bilmodell
+      </span>
 
-          <button
-            type="submit"
-            class="inline-flex h-10 items-center justify-center gap-2 rounded-lg bg-blue-600 px-5 text-sm font-semibold text-white transition hover:bg-gray-700"
-          >
-            <i class="fa-solid fa-plus"></i>
-            Legg til
-          </button>
-        </form>
-      </section>
+      <input
+        type="text"
+        id="car-model"
+        required
+        placeholder="F.eks. Skoda Kodiaq 2021"
+        class="w-full rounded-lg border border-gray-300 bg-gray-50 px-3 py-2.5 text-sm text-gray-900 outline-none transition placeholder:text-gray-400 focus:border-gray-500 focus:bg-white focus:ring-2 focus:ring-gray-200"
+      />
+    </label>
+
+    <button
+      type="submit"
+      class="inline-flex h-[42px] items-center justify-center gap-2 rounded-lg bg-gray-900 px-5 text-sm font-semibold text-white shadow-sm transition hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-400"
+    >
+      <i class="fa-solid fa-plus text-xs"></i>
+      Legg til
+    </button>
+  </form>
+</section>
 
       <!-- Statusoversikt -->
       <section class="mb-6 grid grid-cols-1 gap-4 md:grid-cols-2">
