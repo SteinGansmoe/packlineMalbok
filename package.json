@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "tailwindcss -i ./css/input.css -o ./dist/styles.css --watch",
-    "build": "tailwindcss -i ./src/input.css -o ./dist/output.css --minify"
+    "build": "tailwindcss -i ./css/input.css -o ./dist/output.css --minify"
   },
   "keywords": [],
   "author": "",
