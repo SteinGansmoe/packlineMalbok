@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="no">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Tilpasningskø | Packline</title>
+
+    <link rel="stylesheet" href="/dist/styles.css" />
+    <script
+      src="https://kit.fontawesome.com/your-kit-id.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+
+  <body class="min-h-screen bg-gray-100 text-gray-900">
+    <nav class="bg-white shadow-md">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex h-16 items-center justify-between">
+          <a href="/index.html" class="inline-block" aria-label="Hjem">
+            <img
+              src="/images/packline.png"
+              alt="Packline"
+              class="h-10 w-auto"
+            />
+          </a>
+
+          <a
+            href="/index.html"
+            class="text-sm font-medium text-gray-600 hover:text-gray-900"
+          >
+            Tilbake til malbok
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
+      <!-- Header -->
+      <section class="mb-8">
+        <h1 class="text-3xl font-bold tracking-tight">Tilpasningskø</h1>
+
+        <p class="mt-2 text-gray-600">
+          Oversikt over bokser som venter på tilpasning.
+        </p>
+      </section>
+
+      <!-- Legg til ordre -->
+      <section class="mb-8 rounded-xl bg-white p-6 shadow">
+        <div class="mb-5">
+          <h2 class="text-xl font-semibold">Legg til ordre</h2>
+
+          <p class="mt-1 text-sm text-gray-500">
+            Nye ordre legges automatisk til med status "I kø".
+          </p>
+        </div>
+
+        <form
+          id="queue-form"
+          class="grid grid-cols-1 gap-4 md:grid-cols-[1fr_2fr_auto] md:items-end"
+        >
+          <label class="block">
+            <span class="mb-1 block text-sm font-medium text-gray-700">
+              Ordrenummer
+            </span>
+
+            <input
+              type="text"
+              id="order-number"
+              required
+              placeholder="F.eks. 123456"
+              class="w-full rounded-lg border border-gray-300 px-3 py-2 focus:border-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-200"
+            />
+          </label>
+
+          <label class="block">
+            <span class="mb-1 block text-sm font-medium text-gray-700">
+              Bilmodell
+            </span>
+
+            <input
+              type="text"
+              id="car-model"
+              required
+              placeholder="F.eks. Skoda Kodiaq 2021"
+              class="w-full rounded-lg border border-gray-300 px-3 py-2 focus:border-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-200"
+            />
+          </label>
+
+          <button
+            type="submit"
+            class="h-10 rounded-lg bg-gray-900 px-5 font-medium text-white transition hover:bg-black"
+          >
+            Legg til
+          </button>
+        </form>
+      </section>
+
+      <!-- Oppsummering -->
+      <section class="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <div class="rounded-xl bg-white p-5 shadow">
+          <p class="text-sm font-medium text-gray-500">Under behandling</p>
+
+          <p
+            id="in-progress-count"
+            class="mt-1 text-3xl font-bold text-orange-600"
+          >
+            0
+          </p>
+        </div>
+
+        <div class="rounded-xl bg-white p-5 shadow">
+          <p class="text-sm font-medium text-gray-500">I kø</p>
+
+          <p id="queued-count" class="mt-1 text-3xl font-bold text-blue-600">
+            0
+          </p>
+        </div>
+      </section>
+
+      <!-- Kø -->
+      <section class="overflow-hidden rounded-xl bg-white shadow">
+        <div class="border-b border-gray-200 px-6 py-4">
+          <h2 class="text-lg font-semibold">Aktiv kø</h2>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gray-50">
+              <tr>
+                <th
+                  class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-500"
+                >
+                  Ordrenummer
+                </th>
+
+                <th
+                  class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-500"
+                >
+                  Bilmodell
+                </th>
+
+                <th
+                  class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-500"
+                >
+                  Status
+                </th>
+
+                <th
+                  class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-500"
+                >
+                  Dato lagt til
+                </th>
+              </tr>
+            </thead>
+
+            <tbody
+              id="queue-list"
+              class="divide-y divide-gray-100 bg-white"
+            >
+              <!-- JS renderer køen her -->
+            </tbody>
+          </table>
+        </div>
+
+        <div
+          id="empty-queue"
+          class="hidden px-6 py-12 text-center text-gray-500"
+        >
+          Ingen ordre i kø akkurat nå.
+        </div>
+      </section>
+    </main>
+
+    <script type="module" src="/js/queue.mjs"></script>
+  </body>
+</html>
