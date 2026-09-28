@@ -1,7 +1,6 @@
-// searchCars.mjs
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.48.0";
 import { publicKey, projectId } from "./user/utils/constants.mjs";
-import { renderCarList } from "./renderCars.mjs"; // optional shared renderer
+import { renderCarList } from "./renderCars.mjs";
 
 const supabase = createClient(projectId, publicKey);
 
@@ -19,17 +18,44 @@ export function setupSearch(inputElement, carListElement) {
         return;
       }
 
+      const searchTerms = query
+        .split(/\s+/)
+        .filter(Boolean);
+
       const { data, error } = await supabase
-  .from("cars")
-  .select("*")
-  .or(`make.ilike.%${query}%,model.ilike.%${query}%,roofbox.ilike.%${query}%,takfeste.ilike.%${query}%`);
+        .from("cars")
+        .select("*");
 
       if (error) {
-        carListElement.innerHTML = `<p class="text-red-500">Feil ved søk: ${error.message}</p>`;
+        carListElement.innerHTML = `
+          <p class="text-red-500">
+            Feil ved søk: ${error.message}
+          </p>
+        `;
         return;
       }
+
+      const filteredCars = data.filter((car) => {
+        const searchableText = `
+          ${car.id}
+          ${car.make || ""}
+          ${car.model || ""}
+          ${car.year || ""}
+          ${car.roofbox || ""}
+          ${car.takfeste || ""}
+          ${car.takstativ || ""}
+        `
+          .toLowerCase()
+          .replace(/\s+/g, " ");
+
+        return searchTerms.every((term) =>
+          searchableText.includes(term)
+        );
+      });
+
       const session = (await supabase.auth.getSession()).data.session;
-      renderCarList(data, session, carListElement);
+
+      renderCarList(filteredCars, session, carListElement);
     }, 400);
   });
 }
