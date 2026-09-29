@@ -8,6 +8,7 @@ import {
 import { setupSearch } from "./search.mjs";
 
 const makeSelect = document.getElementById("make-select");
+
 const modelSelect = document.getElementById("model-select");
 const carList = document.getElementById("car-list");
 const searchInput = document.getElementById("search-input");
@@ -36,9 +37,17 @@ export async function loadOptions() {
   });
 }
 
-makeSelect.addEventListener("change", () => {
+makeSelect.addEventListener("change", async () => {
   const selectedMake = makeSelect.value;
   modelSelect.innerHTML = '<option value="">Velg bilmodell</option>';
+
+  if (!selectedMake) {
+    modelSelect.classList.add("hidden");
+    modelSelect.disabled = true;
+    return;
+  }
+  modelSelect.classList.remove("hidden");
+  modelSelect.disabled = false;
 
   const models = [
     ...new Set(
